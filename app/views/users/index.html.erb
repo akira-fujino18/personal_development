@@ -1,0 +1,75 @@
+<div class="index-container">
+  <div class="index-content">
+<% if current_user.image.attached? %>
+  <%= image_tag current_user.image, size: "360x360" %>
+<% else %>
+  <%= image_tag "default_avatar.png", size: "360x360" %>
+<% end %>
+
+    <div class="index-except-image">
+      <h3>自己紹介</h3>
+        <div class="index-intro">
+          <%= current_user.self_introduction %>
+        </div>
+
+      <%= button_to("自己紹介を編集する", edit_user_path(current_user), method: :get, class: "blue-btn introedit", "data-turbo": "false" ) %>
+
+      <h4>スキルチャート</h4>
+      <%= button_to("スキルを編集する", skills_path(current_user), method: :get, class: "blue-btn skill", "data-turbo": "false" ) %>
+    </div>
+  </div>
+  <div class="chart-flex">
+    <canvas id="myChart" class = "chart"></canvas>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['バックエンド', 'フロントエンド', 'インフラ'],
+        datasets: [
+            {
+                label: 'バックエンド',
+                data: [12, 19, 3],
+                backgroundColor: 'rgba(255,182,193)',
+                borderColor: 'rgba(255,182,193)',
+                borderWidth: 1
+            },
+            {
+                label: 'フロントエンド',
+                data: [8, 15, 5],
+                backgroundColor: 'rgba(255,228,181)',
+                borderColor: 'rgba(255,228,181)',
+                borderWidth: 1
+            },
+            {
+                label: 'インフラ',
+                data: [5, 8, 2],
+                backgroundColor: 'rgba(255,250,205)',
+                borderColor: 'rgba(255,250,205  )',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Chart.js Bar Chart'
+            }
+        },
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                stepSize: 10
+            }
+        }
+    }
+});
+
+</script>

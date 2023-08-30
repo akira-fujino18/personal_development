@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+
+  <body>
+  <%= render 'layouts/header' %>
+  <div class="flash_flex">
+    <div class="flash-notifications">
+      <% flash.each do |key, value| %>
+        <div class="flash-message <%= key %>">
+          <%= value %>
+          <button class="close-button" data-target="<%= key %>">&times;</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+    <div class="container">
+      <%= yield %>
+  <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>

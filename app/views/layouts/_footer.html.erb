@@ -1,0 +1,9 @@
+<footer class="footer">
+  <div class="footer-container">
+    <% if logged_in? %>
+      <%= "#{current_user.name} portfolio site" %>
+    <% else %>
+      user name's portfolio site"
+    <% end %>
+  </div>
+</footer>

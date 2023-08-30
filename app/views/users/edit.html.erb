@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="wrapper-container">
+    <p class="intro-title">自己紹介を編集する</p>
+    <div class="intro-form">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <p class="intro-field">自己紹介文</p>
+        <%= f.text_area :self_introduction, id: "limitedTextarea", rows: "4", cols: "50", value: @user.self_introduction %>
+        <p>50文字以上、200文字未満で入力してください</p>
+        <p class="image-field">アバター画像</p>
+        </div>
+        <%= f.label :image, "画像ファイルを添付する", class: "custom-file-input" %>
+        <%= f.file_field :image, class: "image_form"%>
+
+
+        <%= f.submit "自己紹介を確定する", class: "blue-btn login", "data-turbo": "false" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  const textarea = document.getElementById('limitedTextarea');
+  const maxLength = 200;
+
+  textarea.addEventListener('input', function() {
+    if (textarea.value.length > maxLength) {
+      textarea.value = textarea.value.slice(0, maxLength);
+    }
+  });
+</script>

@@ -1,0 +1,13 @@
+<header class="header">
+<div class="header-container">
+  <% if logged_in? %>
+    <%= link_to "/", class: "header-title", "data-turbo": "false" do %>
+      <h1>My Portfolio</h1>
+    <% end %>
+    <%= button_to "ログアウト", logout_path, method: :delete, class: "login_btn", "data-turbo": "false" %>
+  <% else %>
+    <h1 class="header-title">My Portfolio</h1>
+    <%= button_to "ログイン", login_path, method: :get, class: "login_btn", "data-turbo": "false" %>
+  <% end %>
+</div>
+</header>

@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="wrapper-container">
+    <p class="wrapper-title"><%= "#{@category.name}にスキルを追加" %></p>
+    <div class="wrapper-form">
+      <%= form_with(model: @skill, local: true) do |f| %>
+        <p class = "wrapper-field">習得スキル名</p>
+        <%= f.text_field :name %>
+        <p class = "wrapper-field">習得レベル</p>
+        <%= f.select :level, options_for_select((0..100).to_a, selected: 40) %>
+        <p>0 ~ 100 の間で選択してください</p>
+
+    </div>
+        <%= f.submit "追加する", class: "blue-btn login", "data-turbo": "false" %>
+      <% end %>
+  </div>
+</div>
