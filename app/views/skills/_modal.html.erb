@@ -1,28 +1,40 @@
 <% if params[:create_modal] == "true" %>
-  <div class ="modal-overlay">
-    <div class = "modal-flex">
-      <div class ="modal-content">
-        <p class="modal-p"><%= "#{@category.name} に #{params[:name]} を習得レベル #{params[:level]} で追加しました！"%></p>
-        <%= button_to "スキル編集ページに戻る", skills_path(current_user), method: :get, class: "blue btn modal-close", "data-turbo": false %>
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-flex">
+      <div class="modal-content">
+        <p class="modal-p"><%= "#{@category.name} に #{params[:name]} を習得レベル #{params[:level]} で追加しました！" %></p>
+        <button class="blue btn modal-close" data-turbo="false">スキル編集ページに戻る</button>
       </div>
     </div>
   </div>
 <% elsif params[:update_modal] == "true" %>
-  <div class ="modal-overlay">
-    <div class = "modal-flex">
-      <div class ="modal-content">
-        <p class="modal-p"><%= "#{params[:name]} の習得レベルを保存しました！"%></p>
-        <%= button_to "スキル編集ページに戻る", skills_path(current_user), method: :get, class: "blue btn modal-close", "data-turbo": false %>
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-flex">
+      <div class="modal-content">
+        <p class="modal-p"><%= "#{params[:name]} の習得レベルを保存しました！" %></p>
+        <button class="blue btn modal-close" data-turbo="false">スキル編集ページに戻る</button>
       </div>
     </div>
   </div>
 <% elsif params[:delete_modal] == "true" %>
-  <div class ="modal-overlay">
-    <div class = "modal-flex">
-      <div class ="modal-content">
-        <p class="modal-p"><%= "#{params[:name]} の項目を削除しました！"%></p>
-        <%= button_to "スキル編集ページに戻る", skills_path(current_user), method: :get, class: "blue btn modal-close", "data-turbo": false %>
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-flex">
+      <div class="modal-content">
+        <p class="modal-p"><%= "#{params[:name]} の項目を削除しました！" %></p>
+        <button class="blue btn modal-close" data-turbo="false">スキル編集ページに戻る</button>
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
+  <script>
+    var modalOverlay = document.getElementById('modal-overlay');
+    var closeButton = document.querySelector('.modal-close');
+
+    function closeModal() {
+      modalOverlay.style.display = 'none';
+    }
+
+    closeButton.addEventListener('click', function() {
+      closeModal();
+    });
+  </script>
