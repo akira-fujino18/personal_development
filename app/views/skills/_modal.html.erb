@@ -1,0 +1,28 @@
+<% if params[:create_modal] == "true" %>
+  <div class ="modal-overlay">
+    <div class = "modal-flex">
+      <div class ="modal-content">
+        <p class="modal-p"><%= "#{@category.name} に #{params[:name]} を習得レベル #{params[:level]} で追加しました！"%></p>
+        <%= button_to "スキル編集ページに戻る", skills_path(current_user), method: :get, class: "blue btn modal-close", "data-turbo": false %>
+      </div>
+    </div>
+  </div>
+<% elsif params[:update_modal] == "true" %>
+  <div class ="modal-overlay">
+    <div class = "modal-flex">
+      <div class ="modal-content">
+        <p class="modal-p"><%= "#{params[:name]} の習得レベルを保存しました！"%></p>
+        <%= button_to "スキル編集ページに戻る", skills_path(current_user), method: :get, class: "blue btn modal-close", "data-turbo": false %>
+      </div>
+    </div>
+  </div>
+<% elsif params[:delete_modal] == "true" %>
+  <div class ="modal-overlay">
+    <div class = "modal-flex">
+      <div class ="modal-content">
+        <p class="modal-p"><%= "#{params[:name]} の項目を削除しました！"%></p>
+        <%= button_to "スキル編集ページに戻る", skills_path(current_user), method: :get, class: "blue btn modal-close", "data-turbo": false %>
+      </div>
+    </div>
+  </div>
+<% end %>

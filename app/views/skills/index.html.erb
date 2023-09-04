@@ -1,26 +1,32 @@
+<% if params[:create_modal] == "true" || params[:update_modal] == "true" || params[:delete_modal] == "true" %>
+  <%= render "skills/modal" %>
+<% end %>
+
 <% Category.all.each do |category| %>
-<div class = "skill-index-container">
-  <div class = "skill-table">
-    <div class = "skill-index-title">
-      <h5><%= category.name %></h5>
-<%= button_to "スキルを追加する", new_user_category_skill_path(current_user, category), method: :get, class: "blue-btn image-field", "data-turbo": "false" %>
+  <div class="skill-index-container">
+    <div class="skill-table">
+      <div class="skill-index-title">
+        <h5><%= category.name %></h5>
+        <%= button_to "スキルを追加する", new_user_category_skill_path(current_user, category), method: :get, class: "blue btn image-field", "data-turbo": "false" %>
+      </div>
+      <table>
+        <tr>
+          <th>習得スキル</th>
+          <th style="padding-right: 72px;">習得レベル</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% Skill.where(user_id: current_user.id, category_id: category.id).each do |skill| %>
+          <tr>
+            <td><%= skill.name %></td>
+            <%= form_with(model: skill, url: skill_path(skill), method: :patch, local: true, "data-turbo": "false") do |f| %>
+            <td><%= f.select :level, options_for_select((0..100).to_a, skill.level), {}, class: "select-level" %><%= image_tag 'sort.png', class: "image-sort" %></td>
+            <td><%= f.submit "習得レベルを保存する", class: "save btn" %></td>
+            <% end %>
+            <td><%= button_to "スキルを削除する", skill_path(skill), method: :delete, class: "delete btn", "data-turbo": "false" %></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
-    <table>
-  <tr>
-    <th>習得スキル</th>
-    <th>習得レベル</th>
-    <th></th>
-    <th></th>
-  </tr>
-<% Skill.where(user_id: current_user.id, category_id: category.id).each do |skill| %>
-    <tr>
-      <td><%= skill.name %></td>
-      <td><%= skill.level %></td>
-      <td><%= button_to "習得レベルを保存する", skills_path, class: "save-btn save", "data-turbo": "false" %></td>
-      <td><%= button_to "スキルを削除する", skills_path, class: "delete-btn delete", "data-turbo": "false" %></td>
-    <% end %>
-    </tr>
-  </table>
   </div>
-</div>
 <% end %>

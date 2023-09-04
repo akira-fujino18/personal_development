@@ -3,12 +3,13 @@
     <p class="wrapper-title">ログイン</p>
     <div class="wrapper-form">
       <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
-        <p class = "wrapper-field">メールアドレス</p>
+        <%= render 'layouts/error_messages' %>
+        <p class="wrapper-field">メールアドレス</p>
         <%= f.email_field :email %>
-        <p class = "wrapper-field">パスワード</p>
+        <p class="wrapper-field">パスワード</p>
         <%= f.password_field :password %>
-    </div>
-        <%= f.submit "ログインする", class: "blue-btn login", "data-turbo": "false" %>
+        <%= f.submit "ログインする", class: "blue btn login-margin", "data-turbo": "false" %>
       <% end %>
+    </div>
   </div>
 </div>

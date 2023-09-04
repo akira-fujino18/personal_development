@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   end
 
   def index
+    @skill = Skill.where(user_id: current_user.id)
+    @be_level = Skill.where(user_id: current_user.id, category_id: 1).maximum(:level)
+    @fe_level = Skill.where(user_id: current_user.id, category_id: 2).maximum(:level)
+    @inf_level = Skill.where(user_id: current_user.id, category_id: 3).maximum(:level)
   end
 
   def edit
@@ -21,14 +25,13 @@ class UsersController < ApplicationController
     end
   end
 
-private
+  private
 
-def set_user
-  @user = User.find(params[:id])
-end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-def user_params
-  params.require(:user).permit(:name, :email, :self_introduction, :password_digest, :image)
-end
-
+  def user_params
+    params.require(:user).permit(:name, :email, :self_introduction, :password_digest, :image)
+  end
 end

@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :skills # 余分な行を削除します
+  resources :skills
 end
