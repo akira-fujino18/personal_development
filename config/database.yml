@@ -19,3 +19,9 @@ test:
   host: db
   username: root
   password: password
+
+  production:
+  <<: *default
+  database: myapp_production
+  username: myapp
+  password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
