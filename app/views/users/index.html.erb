@@ -12,10 +12,10 @@
           <%= current_user.self_introduction %>
         </div>
 
-      <%= button_to("自己紹介を編集する", edit_user_path(current_user), method: :get, class: "blue btn introedit", "data-turbo": "false" ) %>
+      <%= button_to("自己紹介を編集する", edit_user_path(current_user), method: :get, class: "blue introedit", "data-turbo": "false" ) %>
 
       <h4>スキルチャート</h4>
-      <%= button_to("スキルを編集する", skills_path(current_user), method: :get, class: "blue btn skill", "data-turbo": "false" ) %>
+      <%= button_to("スキルを編集する", skills_path(current_user), method: :get, class: "blue skill", "data-turbo": "false" ) %>
     </div>
   </div>
   <div class="chart-flex">

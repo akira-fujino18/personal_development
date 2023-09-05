@@ -11,10 +11,6 @@ header {
   margin-bottom: 15px;
 }
 
-.btn {
-  cursor: pointer;
-}
-
 .header-container {
   display: flex;
   justify-content: space-between;

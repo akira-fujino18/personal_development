@@ -7,7 +7,7 @@
     <div class="skill-table">
       <div class="skill-index-title">
         <h5><%= category.name %></h5>
-        <%= button_to "スキルを追加する", new_user_category_skill_path(current_user, category), method: :get, class: "blue btn image-field", "data-turbo": "false" %>
+        <%= button_to "スキルを追加する", new_user_category_skill_path(current_user, category), method: :get, class: "blue image-field", "data-turbo": "false" %>
       </div>
       <table>
         <tr>
@@ -21,9 +21,9 @@
             <td><%= skill.name %></td>
             <%= form_with(model: skill, url: skill_path(skill), method: :patch, local: true, "data-turbo": "false") do |f| %>
             <td><%= f.select :level, options_for_select((0..100).to_a, skill.level), {}, class: "select-level" %><%= image_tag 'sort.png', class: "image-sort" %></td>
-            <td><%= f.submit "習得レベルを保存する", class: "save btn" %></td>
+            <td><%= f.submit "習得レベルを保存する", class: "save" %></td>
             <% end %>
-            <td><%= button_to "スキルを削除する", skill_path(skill), method: :delete, class: "delete btn", "data-turbo": "false" %></td>
+            <td><%= button_to "スキルを削除する", skill_path(skill), method: :delete, class: "delete", "data-turbo": "false" %></td>
           </tr>
         <% end %>
       </table>
