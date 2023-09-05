@@ -72,8 +72,3 @@ production:
 # MYSQL_URL:        mysql2://gby7vx4yv99oth4c:oirxtap5ywmms9ds@s29oj5odr85rij2o.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/yp3ojmxvsbd8ptl6
 # MYSQL_USERNAME:   gby7vx4yv99oth4c
 # RAILS_MASTER_KEY: a36b60f00f60c1b33db60610acb3dc83
-
-$
-$
-$
-$ heroku config:set DATABASE_URL ="mysql://qwe5o3ems6gvmzvc:h3bdyjq5c6wxvqrd@ebh2y8tqym512wqs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/l4wus8en0kkqm69y"
