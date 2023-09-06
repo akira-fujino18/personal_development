@@ -97,7 +97,6 @@ input {
   outline: none;
   width:480px;
   font-size: 16.5px;
-  padding-bottom: 6px;
 }
 
 input:-webkit-autofill {
@@ -160,12 +159,22 @@ h3 {
   margin-top: 100px;
 }
 
+.preview-image img {
+  width: 70px;
+}
+
 h4 {
   width: 400px;
   border-bottom: 1px solid #AAAAAA;
   font-size: 36px;
   text-align: center;
   margin: 200px 0 0 -210px;
+}
+
+.preview-flex {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
 }
 
 .skill {
@@ -237,13 +246,8 @@ textarea {
   opacity: 0.6;
 }
 
-.image_form{
+.image-form{
 display: none;
-}
-
-.preview-down {
-  display: flex;
-  justify-content: space-between;
 }
 
 /* skill#index */

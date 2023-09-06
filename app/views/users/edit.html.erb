@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/assets/users/edit.css">
 <div class="wrapper">
   <div class="wrapper-container">
     <p class="intro-title">自己紹介を編集する</p>
@@ -6,11 +7,16 @@
         <p class="intro-field">自己紹介文</p>
         <%= f.text_area :self_introduction, id: "limitedTextarea", rows: "4", cols: "50", value: @user.self_introduction %>
         <p>50文字以上、200文字未満で入力してください</p>
-        <p class="image-field">アバター画像</p>
-        </div>
-        <%= f.label :image, "画像ファイルを添付する", class: "custom-file-input" %>
-        <%= f.file_field :image, class: "image_form"%>
+          <div class = "preview-flex">
+            <p class="image-field">アバター画像</p>
+            <div class = "preview-image">
+              <div id="post_images"><p id="preview"></p>
+              </div>
+            </div>
+          </div>
 
+        <%= f.label :image, "画像ファイルを添付する", class: "custom-file-input" %>
+        <%= f.file_field :image, class: "image-form", onchange: "loadImage(this)"; %>
 
         <%= f.submit "自己紹介を確定する", class: "blue login-margin", "data-turbo": "false" %>
       <% end %>
@@ -27,4 +33,25 @@
       textarea.value = textarea.value.slice(0, maxLength);
     }
   });
+</script>
+
+<script>
+  function loadImage(obj)
+  {
+    var allPreview = document.getElementById('post_images');
+    var newPreview = document.createElement("p");
+    allPreview.querySelector("p").remove();
+    newPreview.setAttribute("id","preview");
+    allPreview.insertBefore(newPreview, allPreview.firstChild);
+    document.getElementById("post_images").style.display = "";
+    for (i = 0; i < obj.files.length; i++) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function (e) {
+            var img = new Image();
+            img.src = e.target.result;
+            document.getElementById('preview').appendChild(img);
+        });
+      fileReader.readAsDataURL(obj.files[i]);
+    }
+  }
 </script>
