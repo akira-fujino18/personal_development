@@ -1,7 +1,7 @@
 <header class="header">
 <div class="header-container">
   <% if logged_in? %>
-    <%= link_to "/", class: "header-title", "data-turbo": "false" do %>
+    <%= link_to users_path(current_user), class: "header-title", "data-turbo": "false" do %>
       <h1>My Portfolio</h1>
     <% end %>
     <%= button_to "ログアウト", logout_path, method: :delete, class: "login btn", "data-turbo": "false" %>

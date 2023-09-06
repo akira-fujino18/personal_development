@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include SessionsHelper
 
   def new
   end
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
       reset_session
       session[:user_id] = user.id
       flash[:success] = "ログインに成功しました。"
-      redirect_to root_path
+      redirect_to users_path(current_user)
     else
       flash.now[:error] = "ログインに失敗しました。"
       render :new
