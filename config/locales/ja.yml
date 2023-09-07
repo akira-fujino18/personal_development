@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        self_introduction: 自己紹介文
+        image: 画像
+      skill:
+        level: レベル
+        name: スキル名
+    activemodel:
+      attributes:
+        order_object:
+          post_code: 郵便番号

@@ -12,11 +12,13 @@ class SkillsController < ApplicationController
   end
 
   def create
-    skill = Skill.new(skill_params)
-    if skill.save
-      redirect_to skills_path(name: skill.name, level: skill.level, category_id: skill.category_id, create_modal: true)
+    @skill = Skill.new(skill_params)
+    if @skill.save
+      redirect_to skills_path(name: @skill.name, level: @skill.level, category_id: @skill.category_id, create_modal: true)
     else
       flash.now[:error] = "スキルの追加に失敗しました。"
+      @category = Category.find(params[:category_id])
+
       render :new
     end
   end

@@ -6,9 +6,12 @@ class UsersController < ApplicationController
 
   def index
     @skill = Skill.where(user_id: current_user.id)
-    @be_level = Skill.where(user_id: current_user.id, category_id: 1).maximum(:level)
-    @fe_level = Skill.where(user_id: current_user.id, category_id: 2).maximum(:level)
-    @inf_level = Skill.where(user_id: current_user.id, category_id: 3).maximum(:level)
+    be_sum_level = Skill.where(user_id: current_user.id, category_id: 1).sum(:level)
+    @be_level = be_sum_level
+    fe_sum_level = Skill.where(user_id: current_user.id, category_id: 2).sum(:level)
+    @fe_level = fe_sum_level
+    inf_sum_level = Skill.where(user_id: current_user.id, category_id: 3).sum(:level)
+    @inf_level = inf_sum_level
   end
 
   def edit
@@ -16,11 +19,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update!(user_params)
+    if @user.update(user_params)
       flash[:success] = "自己紹介文を変更しました。"
       redirect_to users_path
     else
-      flash.now[:alert] = "自己紹介文の変更に失敗しました。"
+      flash.now[:error] = "自己紹介文の変更に失敗しました。"
       render :edit
     end
   end

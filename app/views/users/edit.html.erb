@@ -7,6 +7,7 @@
         <p class="intro-field">自己紹介文</p>
         <%= f.text_area :self_introduction, id: "limitedTextarea", rows: "4", cols: "50", value: @user.self_introduction %>
         <p>50文字以上、200文字未満で入力してください</p>
+        <%= render 'shared/error_messages', object: f.object %>
           <div class = "preview-flex">
             <p class="image-field">アバター画像</p>
             <div class = "preview-image">

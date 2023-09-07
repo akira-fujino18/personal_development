@@ -15,6 +15,6 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
-  validates :self_introduction, length: { minimum: 50 }
+  validates :self_introduction, length: { minimum: 50, maximum: 200 }, allow_blank: true
   has_many :skills
 end

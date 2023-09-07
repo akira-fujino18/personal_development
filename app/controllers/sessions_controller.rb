@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       flash[:success] = "ログインに成功しました。"
       redirect_to users_path(current_user)
     else
-      flash.now[:error] = "ログインに失敗しました。"
+      flash.now[:error] = "ログインに失敗しました。メールアドレスまたはパスワードが違います。"
       render :new
     end
   end

@@ -27,6 +27,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 var ctx = document.getElementById('myChart');
+var dataMax = Math.max(
+    <%= @be_level %>,
+    <%= @fe_level %>,
+    <%= @inf_level %>
+);
+var maxScaleValue = Math.max(100, dataMax + 20); // 100を超えた場合は20追加する例
+
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -34,7 +41,7 @@ var myChart = new Chart(ctx, {
         datasets: [
             {
                 label: 'バックエンド',
-                data: [10,10,<%= @be_level %>],
+                data: [10, 10, <%= @be_level %>],
                 backgroundColor: 'rgba(255,182,193)',
                 borderColor: 'rgba(255,182,193)',
                 borderWidth: 1
@@ -65,11 +72,13 @@ var myChart = new Chart(ctx, {
         scales: {
             y: {
                 min: 0,
-                max: 100,
-                stepSize: 10
+                max: maxScaleValue, // 動的に計算された最大値を設定
+                stepSize: 5
             }
         }
     }
 });
+</script>
+
 
 </script>

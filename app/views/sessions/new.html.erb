@@ -3,7 +3,6 @@
     <p class="wrapper-title">ログイン</p>
     <div class="wrapper-form">
       <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
-        <%= render 'layouts/error_messages' %>
         <p class="wrapper-field">メールアドレス</p>
         <%= f.email_field :email %>
         <p class="wrapper-field">パスワード</p>

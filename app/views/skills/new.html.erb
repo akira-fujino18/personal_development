@@ -3,8 +3,10 @@
     <p class="wrapper-title"><%= "#{@category.name}にスキルを追加" %></p>
     <div class="wrapper-form">
       <%= form_with(model: @skill, url: user_category_skills_path, local: true) do |f| %>
+      <div class = "skill-index-flex">
         <p class = "wrapper-field">習得スキル名</p>
         <%= f.text_field :name %>
+        <%= render 'shared/error_messages', object: f.object %>
         <p class = "wrapper-field">習得レベル</p>
         <%= f.select :level, options_for_select((0..100).to_a, selected: 40) %>
         <%= image_tag 'sort.png', class: "image-sort" %>
@@ -12,5 +14,6 @@
     </div>
         <%= f.submit "追加する", class: "blue login-margin", "data-turbo": "false" %>
       <% end %>
+
   </div>
 </div>
