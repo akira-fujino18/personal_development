@@ -28,9 +28,9 @@
 <script>
 var ctx = document.getElementById('myChart');
 var dataMax = Math.max(
-    <%= @be_level %>,
-    <%= @fe_level %>,
-    <%= @inf_level %>
+    <%= @current_month_data_be %>,
+    <%= @current_month_data_fe %>,
+    <%= @current_month_data_inf %>
 );
 var maxScaleValue = Math.max(100, dataMax + 20); // 100を超えた場合は20追加する例
 
@@ -41,21 +41,21 @@ var myChart = new Chart(ctx, {
         datasets: [
             {
                 label: 'バックエンド',
-                data: [10, 10, <%= @be_level %>],
+                data: [<%= @two_months_ago_data_be %>, <%= @one_month_ago_data_be %>, <%= @current_month_data_be %>],
                 backgroundColor: 'rgba(255,182,193)',
                 borderColor: 'rgba(255,182,193)',
                 borderWidth: 1
             },
             {
                 label: 'フロントエンド',
-                data: [10, 10, <%= @fe_level %>],
+                data: [<%= @two_months_ago_data_fe %>,<%= @one_month_ago_data_fe %> , <%= @current_month_data_fe %>],
                 backgroundColor: 'rgba(255,228,181)',
                 borderColor: 'rgba(255,228,181)',
                 borderWidth: 1
             },
             {
                 label: 'インフラ',
-                data: [10, 10, <%= @inf_level %>],
+                data: [<%= @two_months_ago_data_inf %>, <%= @one_month_ago_data_inf %>, <%= @current_month_data_inf %>],
                 backgroundColor: 'rgba(255,250,205)',
                 borderColor: 'rgba(255,250,205  )',
                 borderWidth: 1
