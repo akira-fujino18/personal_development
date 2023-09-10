@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include ActiveModel::Dirty
   require 'bcrypt'
 
   before_save { self.email = email.downcase }

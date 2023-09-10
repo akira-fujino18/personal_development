@@ -8,19 +8,24 @@ User.create!([
 ])
 
 user = User.first
-
+last_month = Date.today.prev_month.beginning_of_month
+# スキルデータを作成
 Skill.create!([
   {
     user_id: user.id,
     category_id: 1,
     level: 40,
-    name: "Ruby"
+    name: "Ruby",
+    updated_at: last_month,
+    created_at: last_month
   },
   {
     user_id: user.id,
     category_id: 1,
     level: 50,
-    name: "PHP"
+    name: "PHP",
+    updated_at: last_month,
+    created_at: last_month
   },
   {
     user_id: user.id,
@@ -65,6 +70,7 @@ Skill.create!([
     name: "Docker"
   }
 ])
+
 
 Category.create!([
   {
