@@ -16,15 +16,19 @@
           <th></th>
           <th></th>
         </tr>
-        <% Skill.where(user_id: current_user.id, category_id: category.id).each do |skill| %>
+        <% skills = Skill.where(user_id: current_user.id, category_id: category.id) %>
+        <% unique_skills = skills.group_by(&:name).map { |_, group| group.max_by(&:updated_at) } %>
+
+        <% unique_skills.each do |skill| %>
           <tr>
             <td><%= skill.name %></td>
+
             <%= form_with(model: @skill, url: skill_register_skills_path, local: true) do |f| %>
-            <%= f.hidden_field :name, value: skill.name %>
-            <%= f.hidden_field :category_id, value: category.id %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <td><%= f.select :level, options_for_select((0..100).to_a, skill.level), {}, class: "select-level" %><%= image_tag 'sort.png', class: "image-sort" %></td>
-            <td><%= f.submit "習得レベルを保存する", class: "save", "data-turbo": "false" %></td>
+              <%= f.hidden_field :name, value: skill.name %>
+              <%= f.hidden_field :category_id, value: category.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <td><%= f.select :level, options_for_select((0..100).to_a, skill.level), {}, class: "select-level" %><%= image_tag 'sort.png', class: "image-sort" %></td>
+              <td><%= f.submit "習得レベルを保存する", class: "save", "data-turbo": "false" %></td>
             <% end %>
             <td><%= button_to "スキルを削除する", skill_path(skill), method: :delete, class: "delete", "data-turbo": "false" %></td>
           </tr>
