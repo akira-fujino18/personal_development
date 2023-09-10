@@ -10,5 +10,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :skills, only: [:create] do
+    collection do
+      post 'skill_register', to: 'skills#skill_register'
+    end
+  end
+
+
   resources :skills
+
 end
